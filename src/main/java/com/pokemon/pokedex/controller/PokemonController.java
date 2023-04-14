@@ -73,14 +73,14 @@ public class PokemonController {
         return new ResponseEntity<>("ce pokemon n'existe pas", HttpStatus.BAD_REQUEST);
     }
 
-    // @DeleteMapping("{pokemonName}")
-    // public ResponseEntity<?> killPokemon(@PathVariable String pokemonName) {
-    //     if (pokemonRepository.existsByName(pokemonName)) {
-    //         pokemonRepository.deleteByName(pokemonName);
-    //         return new ResponseEntity<>("ce pokemon a été exécuté", HttpStatus.OK);
-    //     }
-    //     return new ResponseEntity<>("ce pokemon est déjà mort ou n'a jamais", HttpStatus.BAD_REQUEST);
-    // }
+    @DeleteMapping("/pokemon/{pokemonName}")
+public ResponseEntity<?> killPokemon(@PathVariable String pokemonName) {
+    if (pokemonRepository.existsByName(pokemonName)) {
+        pokemonRepository.deleteByName(pokemonName);
+        return new ResponseEntity<>("ce pokemon a été exécuté", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("ce pokemon est déjà mort ou n'a jamais existé", HttpStatus.BAD_REQUEST);
+}
 
     @GetMapping("pokedex/{name}")
     public String deletePokemon(@PathVariable String name) {
